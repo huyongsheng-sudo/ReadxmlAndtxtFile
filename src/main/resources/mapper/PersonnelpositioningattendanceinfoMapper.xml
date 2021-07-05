@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.PersonnelpositioningattendanceinfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.demo.entity.Personnelpositioningattendanceinfo">
+        <result column="Id" property="Id" />
+        <result column="cardNum" property="cardNum" />
+        <result column="outTime" property="outTime" />
+        <result column="inTime" property="inTime" />
+        <result column="employeeId" property="employeeId" />
+        <result column="workTeamDay" property="workTeamDay" />
+        <result column="TeamName" property="TeamName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        Id, cardNum, outTime, inTime, employeeId, workTeamDay, TeamName
+    </sql>
+
+    <select id="getAllMsg" resultType="com.example.demo.entity.Personnelpositioningattendanceinfo">
+        select *
+        from personnelpositioningattendanceinfo
+    </select>
+
+    <insert id="insertMsg">
+        insert into personnelpositioningattendanceinfo(Id,CardNum,outTime,inTime,employeeId,workTeamDay,TeamName)
+        values (#{id},#{cardNum},#{outTime},#{inTime},#{employeeId},#{workTeamDay},#{TeamName})
+    </insert>
+
+</mapper>
