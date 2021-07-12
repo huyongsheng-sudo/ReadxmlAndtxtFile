@@ -5,6 +5,7 @@ import com.example.demo.JSONResult;
 import com.example.demo.entity.Personnelpositioningattendanceinfo;
 import com.example.demo.service.PersonnelpositioningattendanceinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,6 +21,7 @@ import java.util.List;
  * @author hys
  * @since 2021-07-02
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/personnelpositioningattendanceinfo")
 public class PersonnelpositioningattendanceinfoController {

@@ -1,6 +1,7 @@
 package com.example.demo.handle;
 
 import com.example.demo.entity.Personnelpositioningattendanceinfo;
+import com.example.demo.entity.Safetyinspectionspatialcoordinates;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -9,15 +10,17 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class AttendanceInfoListParseHandler extends DefaultHandler {
-
+public class SpatialCoordinatesListParseHandler extends DefaultHandler {
     int listIndex = 0;
     String value = null;
-    Personnelpositioningattendanceinfo personnelpositioningattendanceinfo = null;
-    private ArrayList<Personnelpositioningattendanceinfo> personnelpositioningattendanceinfoList = new ArrayList<Personnelpositioningattendanceinfo>();
 
-    public ArrayList<Personnelpositioningattendanceinfo> getPersonnelpositioningattendanceinfoList() {
-        return personnelpositioningattendanceinfoList;
+    String cs_mine_code = null;
+    Safetyinspectionspatialcoordinates safetyinspectionspatialcoordinates = null;
+
+    private ArrayList<Safetyinspectionspatialcoordinates> safetyinspectionspatialcoordinatesList = new ArrayList<>();
+
+    public ArrayList<Safetyinspectionspatialcoordinates> getSafetyinspectionspatialcoordinatesList() {
+        return safetyinspectionspatialcoordinatesList;
     }
 
     /**
@@ -52,16 +55,23 @@ public class AttendanceInfoListParseHandler extends DefaultHandler {
      */
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+
         super.startElement(uri, localName, qName, attributes);
         // 扫描data节点
         if (qName.equals("root")) {
             // 扫描根节点
             System.out.println("节点名是：" + qName + "---");
-        } else {
+        } else if (qName.equals("head")) {
+            for (int i = 0 ; i < attributes.getLength(); i++) {
+                if (attributes.getQName(i).equals("cs_mine_code")) {
+                    cs_mine_code = attributes.getValue(i);
+                }
+            }
+        } else{
             //设置日期格式
-            DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//            DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             listIndex++;
-            personnelpositioningattendanceinfo = new Personnelpositioningattendanceinfo();
+            safetyinspectionspatialcoordinates = new Safetyinspectionspatialcoordinates();
             //开始解析
             System.out.println("======================开始遍历第" + listIndex + "列的内容=================");
             /* 根据属性名称获取属性值*/
@@ -69,35 +79,23 @@ public class AttendanceInfoListParseHandler extends DefaultHandler {
 
             for (int i = 0 ; i < attributes.getLength(); i++) {
                 System.out.println("节点名称是：" + attributes.getQName(i) + "节点值是：" + attributes.getValue(i));
+                safetyinspectionspatialcoordinates.setCsMineCode(cs_mine_code);
                 switch (attributes.getQName(i)) {
-                    case "id" :
-                        personnelpositioningattendanceinfo.setId(Integer.parseInt(attributes.getValue(i)));
+
+                    case "cs_y_coor" :
+                        safetyinspectionspatialcoordinates.setCsYCoor(Float.valueOf(attributes.getValue(i)));
                         break;
-                    case "cardNum" :
-                        personnelpositioningattendanceinfo.setCardNum(attributes.getValue(i));
+                    case "cs_x_coor" :
+                        safetyinspectionspatialcoordinates.setCsXCoor(Float.valueOf(attributes.getValue(i)));
                         break;
-                    case "outTime" :
-                        personnelpositioningattendanceinfo.setOutTime(LocalDateTime.parse(attributes.getValue(i),df));
-                        break;
-                    case "inTime" :
-                        personnelpositioningattendanceinfo.setInTime(LocalDateTime.parse(attributes.getValue(i),df));
-                        break;
-                    case "employeeId" :
-                        personnelpositioningattendanceinfo.setEmployeeId(Integer.parseInt(attributes.getValue(i)));
-                        break;
-                    case "workTeamDay" :
-                        personnelpositioningattendanceinfo.setWorkTeamDay(Integer.parseInt(attributes.getValue(i)));
-                        break;
-                    case "TeamName" :
-                        personnelpositioningattendanceinfo.setTeamName(attributes.getValue(i));
+                    case "cs_z_coor" :
+                        safetyinspectionspatialcoordinates.setCsZCoor(Float.valueOf(attributes.getValue(i)));
                         break;
                     default :
                         break;
                 }
             }
-            System.out.println("该节点是：" + personnelpositioningattendanceinfo);
-//            personnelpositioningattendanceinfoMapper.insertMsg(0,"0","2021-06-28 09:35:53","2021-06-28 08:35:53",0,0,"nice");
-//            personnelpositioningattendanceinfoMapper.insertMsg(personnelpositioningattendanceinfo.getId(),personnelpositioningattendanceinfo.getCardNum(),personnelpositioningattendanceinfo.getOutTime().toString(),personnelpositioningattendanceinfo.getInTime().toString(),personnelpositioningattendanceinfo.getEmployeeId(),personnelpositioningattendanceinfo.getWorkTeamDay(),personnelpositioningattendanceinfo.getTeamName());
+            System.out.println("该节点是：" + safetyinspectionspatialcoordinates);
         }
     }
 
@@ -113,12 +111,12 @@ public class AttendanceInfoListParseHandler extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
         super.endElement(uri, localName, qName);
         //在清空master对象之前先保存
-        if (personnelpositioningattendanceinfo != null) {
-            personnelpositioningattendanceinfoList.add(personnelpositioningattendanceinfo);
+        if (safetyinspectionspatialcoordinates != null) {
+            safetyinspectionspatialcoordinatesList.add(safetyinspectionspatialcoordinates);
             System.out.println("======================结束遍历第" + listIndex + "列的内容=================");
         }
         //把master节点清空，方便解析下一个节点
-        personnelpositioningattendanceinfo = null;
+        safetyinspectionspatialcoordinates = null;
     }
 
     /**

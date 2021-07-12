@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SafetyinspectioncoalmineattributesMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.demo.entity.Safetyinspectioncoalmineattributes">
+        <result column="cs_mine_code" property="csMineCode" />
+        <result column="cs_mine_name" property="csMineName" />
+        <result column="cs_mine_shortname" property="csMineShortname" />
+        <result column="cs_well_code" property="csWellCode" />
+        <result column="cs_well_name" property="csWellName" />
+        <result column="cs_mine_addr" property="csMineAddr" />
+        <result column="cs_btarea_code" property="csBtareaCode" />
+        <result column="cs_mine_phone" property="csMinePhone" />
+        <result column="cs_administer_code" property="csAdministerCode" />
+        <result column="cs_administer_name" property="csAdministerName" />
+        <result column="cs_subrelation_code" property="csSubrelationCode" />
+        <result column="cs_minelicen_num" property="csMinelicenNum" />
+        <result column="cs_ minelicen_effec" property="cs minelicenEffec" />
+        <result column="cs_splicen_num" property="csSplicenNum" />
+        <result column="cs_splicen_effec" property="csSplicenEffec" />
+        <result column="cs_prolicen_num" property="csProlicenNum" />
+        <result column="cs_prolicen_effec" property="csProlicenEffec" />
+        <result column="cs_busilicen_num" property="csBusilicenNum" />
+        <result column="cs_busilicen_effec" property="csBusilicenEffec" />
+        <result column="cs_minehead_name" property="csMineheadName" />
+        <result column="cs_mheadlicen_num" property="csMheadlicenNum" />
+        <result column="cs_mheadlicen_effec" property="csMheadlicenEffec" />
+        <result column="cs_mheadquali_num" property="csMheadqualiNum" />
+        <result column="cs_economic_type" property="csEconomicType" />
+        <result column="cs_capacity_annual" property="csCapacityAnnual" />
+        <result column="cs_capacity_real" property="csCapacityReal" />
+        <result column="cs_workers_total" property="csWorkersTotal" />
+        <result column="cs_mine_field" property="csMineField" />
+        <result column="cs_coal_seam" property="csCoalSeam" />
+        <result column="cs_gas_level" property="csGasLevel" />
+        <result column="cs_gas_abs" property="csGasAbs" />
+        <result column="cs_gas_com" property="csGasCom" />
+        <result column="cs_mine_state" property="csMineState" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        cs_mine_code, cs_mine_name, cs_mine_shortname, cs_well_code, cs_well_name, cs_mine_addr, cs_btarea_code, cs_mine_phone, cs_administer_code, cs_administer_name, cs_subrelation_code, cs_minelicen_num, cs_ minelicen_effec, cs_splicen_num, cs_splicen_effec, cs_prolicen_num, cs_prolicen_effec, cs_busilicen_num, cs_busilicen_effec, cs_minehead_name, cs_mheadlicen_num, cs_mheadlicen_effec, cs_mheadquali_num, cs_economic_type, cs_capacity_annual, cs_capacity_real, cs_workers_total, cs_mine_field, cs_coal_seam, cs_gas_level, cs_gas_abs, cs_gas_com, cs_mine_state
+    </sql>
+
+</mapper>

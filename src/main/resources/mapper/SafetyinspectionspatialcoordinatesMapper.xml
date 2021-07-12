@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SafetyinspectionspatialcoordinatesMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.demo.entity.Safetyinspectionspatialcoordinates">
+        <result column="cs_well_code" property="csWellCode" />
+        <result column="cs_y_coor" property="csYCoor" />
+        <result column="cs_x_coor" property="csXCoor" />
+        <result column="cs_z_coor" property="csZCoor" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        cs_well_code, cs_y_coor, cs_x_coor, cs_z_coor
+    </sql>
+    
+    <insert id="insetSpatialCoordinatesData">
+        insert into safetyinspectionspatialcoordinates(cs_mine_code,cs_y_coor,cs_x_coor,cs_z_coor)
+        values (#{csMineCode},#{csYCoor},#{csXCoor},#{csZCoor})
+    </insert>
+
+</mapper>
