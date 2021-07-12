@@ -15,6 +15,7 @@ class PersonnelpositioningattendanceinfoMapperTest {
     @Test
     void getAllMsg() {
         System.out.println(personnelpositioningattendanceinfoMapper.getAllMsg());
+        System.out.println(111);
     }
 
     @Test
